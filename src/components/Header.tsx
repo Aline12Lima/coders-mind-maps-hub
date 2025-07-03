@@ -45,7 +45,7 @@ const Header = () => {
               size="sm"
               className="flex items-center space-x-2 hover:bg-indigo-50"
               onClick={() =>
-                window.open("discord://-/users/1194013840451575930", "_blank")
+                window.open("https://mapsaline.carrd.co/", "_blank")
               }
             >
               <User className="h-4 w-4 text-indigo-600" />

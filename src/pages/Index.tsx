@@ -7,11 +7,9 @@ import FilterSection from "@/components/FilterSection";
 import MindMapCard from "@/components/MindMapCard";
 import MindMapModal from "@/components/MindMapModal";
 
-// ---> ADIÇÃO 1: Importamos o cliente Sanity e o tipo Key do React
 import { client } from "@/lib/sanityClient";
 import { Key } from "react";
 
-// ---> ADIÇÃO 2: Definimos a "forma" dos dados que virão do Sanity
 interface SanityMindMap {
   _id: Key;
   title: string;
@@ -19,20 +17,18 @@ interface SanityMindMap {
   category: string;
   date: string;
   imageUrl: string;
-  pdfUrl: string; // Adicionamos o campo para o link do PDF
+  pdfUrl: string;
 }
 
 const Index = () => {
-  // Seus estados existentes - Nenhuma alteração aqui
   const [selectedCategory, setSelectedCategory] = useState("Todos");
-  const [selectedMindMap, setSelectedMindMap] = useState<any>(null);
+  const [selectedMindMap, setSelectedMindMap] = useState<SanityMindMap | null>(
+    null
+  );
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // ---> ADIÇÃO 3: Novos estados para guardar os dados do Sanity e controlar o loading
   const [allMindMaps, setAllMindMaps] = useState<SanityMindMap[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // As categorias continuam estáticas, o que é ótimo para os botões de filtro
   const categories = [
     "Todos",
     "Frontend",
@@ -43,21 +39,12 @@ const Index = () => {
     "Algoritmos",
   ];
 
-  // ---> REMOÇÃO: O array 'mindMaps' estático foi removido daqui.
-  // Ele será preenchido com os dados do Sanity.
-
-  // ---> ADIÇÃO 4: Hook useEffect para buscar os dados do Sanity uma vez
   useEffect(() => {
     const fetchMindMaps = async () => {
       setLoading(true);
       const query = `*[_type == "mindMap"]{
-        _id,
-        title,
-        description,
-        category,
-        "date": _createdAt,
-        "imageUrl": image.asset->url,
-        "pdfUrl": pdfFile.asset->url
+        _id, title, description, category, "date": _createdAt,
+        "imageUrl": image.asset->url, "pdfUrl": pdfFile.asset->url
       }`;
 
       try {
@@ -69,32 +56,30 @@ const Index = () => {
         setLoading(false);
       }
     };
-
     fetchMindMaps();
   }, []);
 
-  // ---> ALTERAÇÃO: O filtro agora usa o estado 'allMindMaps' que veio do Sanity
   const filteredMindMaps =
     selectedCategory === "Todos"
       ? allMindMaps
       : allMindMaps.filter((map) => map.category === selectedCategory);
 
-  // Sua função de clique do modal - Nenhuma alteração aqui
-  const handleMindMapClick = (mindMap: any) => {
+  // Esta função está correta e agora será chamada
+  const handleMindMapClick = (mindMap: SanityMindMap) => {
     setSelectedMindMap(mindMap);
     setIsModalOpen(true);
   };
 
-  // ---> ADIÇÃO 5: Se estiver carregando, mostramos uma mensagem
   if (loading) {
     return (
-      <div className="text-center text-white py-20 text-2xl">
-        Carregando conteúdo...
+      <div className="min-h-screen bg-gradient-to-br from-purple-200 via-blue-600 to-indigo-600 flex justify-center items-center">
+        <p className="text-center text-white py-20 text-2xl">
+          Carregando conteúdo...
+        </p>
       </div>
     );
   }
 
-  // Seu JSX - A estrutura visual permanece a mesma
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-200 via-blue-600 to-indigo-600">
       <Header />
@@ -121,21 +106,15 @@ const Index = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* O map agora usa os dados filtrados do Sanity */}
           {filteredMindMaps.map((mindMap) => (
             <MindMapCard
               key={mindMap._id}
-              id={mindMap._id as number}
               title={mindMap.title}
               description={mindMap.description}
               category={mindMap.category}
               date={new Date(mindMap.date).toLocaleDateString("pt-BR")}
               image={mindMap.imageUrl}
-              // Ação de clique adaptada para abrir o PDF do Sanity
-              onClick={() => window.open(mindMap.pdfUrl, "_blank")}
-              author={""}
-              likes={0}
-              views={0}
+              onClick={() => handleMindMapClick(mindMap)}
             />
           ))}
         </div>
@@ -153,7 +132,6 @@ const Index = () => {
         )}
       </main>
 
-      {/* O modal continua funcionando com os dados selecionados */}
       <MindMapModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

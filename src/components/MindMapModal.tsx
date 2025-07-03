@@ -6,23 +6,24 @@ import {
 } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Share2, Download, Calendar, User } from "lucide-react";
+import { Download, Calendar } from "lucide-react";
 
+// Interface atualizada para os dados que vêm do Sanity
 interface MindMapModalProps {
   isOpen: boolean;
   onClose: () => void;
   mindMap: {
-    id: number;
     title: string;
     description: string;
     category: string;
     date: string;
-    image: string;
+    imageUrl: string; // <-- URL da imagem
+    pdfUrl: string; // <-- URL do PDF
   } | null;
 }
 
 const MindMapModal = ({ isOpen, onClose, mindMap }: MindMapModalProps) => {
-  if (!mindMap) return null;
+  if (!isOpen || !mindMap) return null;
 
   const categoryColors: { [key: string]: string } = {
     Frontend: "bg-blue-100 text-blue-800",
@@ -35,45 +36,36 @@ const MindMapModal = ({ isOpen, onClose, mindMap }: MindMapModalProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-gray-50">
+      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-gray-50 p-6">
         <DialogHeader>
-          <div className="flex items-start justify-between">
-            <div className="flex-1">
-              <div className="flex items-center gap-3 mb-2">
-                <Badge
-                  className={
-                    categoryColors[mindMap.category] ||
-                    "bg-gray-100 text-gray-800"
-                  }
-                >
-                  {mindMap.category}
-                </Badge>
-                <div className="flex items-center text-sm text-gray-500 gap-4">
-                  <div className="flex items-center gap-1">
-                    <Calendar className="h-4 w-4" />
-                    <span>{mindMap.date}</span>
-                  </div>
-                </div>
-              </div>
-              <DialogTitle className="text-2xl font-bold text-gray-800 mb-3">
-                {mindMap.title}
-              </DialogTitle>
+          <div className="flex items-center gap-3 mb-2">
+            <Badge
+              className={
+                categoryColors[mindMap.category] || "bg-gray-100 text-gray-800"
+              }
+            >
+              {mindMap.category}
+            </Badge>
+            <div className="flex items-center text-sm text-gray-500 gap-1">
+              <Calendar className="h-4 w-4" />
+              <span>{mindMap.date}</span>
             </div>
           </div>
+          <DialogTitle className="text-3xl font-bold text-gray-800 mb-3">
+            {mindMap.title}
+          </DialogTitle>
         </DialogHeader>
 
         <div className="space-y-6">
-          {/* Área do Mapa Mental */}
-          <div className="w-full h-96 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 rounded-lg border-2 border-dashed border-purple-200 flex items-center justify-center">
-            <div className="text-center">
-              <div className="text-6xl mb-4">🧠</div>
-              <p className="text-gray-600 font-medium">
-                Mapa Mental Interativo
-              </p>
-            </div>
+        
+          <div className="w-full rounded-lg border bg-white p-2">
+            <img
+              src={mindMap.imageUrl}
+              alt={`Pré-visualização do mapa mental ${mindMap.title}`}
+              className="w-full max-h-[50vh] object-contain"
+            />
           </div>
 
-          {/* Descrição */}
           <div>
             <h3 className="text-lg font-semibold mb-3">
               Sobre este Mapa Mental
@@ -83,21 +75,22 @@ const MindMapModal = ({ isOpen, onClose, mindMap }: MindMapModalProps) => {
             </p>
           </div>
 
-          {/* Estatísticas e Ações */}
-          <div className="flex items-center justify-between pt-4 border-t">
-            <div className="flex gap-2">
-              <Button variant="outline" size="sm">
-                <Share2 className="h-4 w-4 mr-1" />
-                Compartilhar
-              </Button>
+          <div className="flex items-center justify-center pt-4 border-t">
+            
+            <a
+              href={mindMap.pdfUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              download
+            >
               <Button
-                size="sm"
+                size="lg"
                 className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
               >
-                <Download className="h-4 w-4 mr-1" />
-                Baixar
+                <Download className="h-4 w-4 mr-2" />
+                Fazer Download do PDF
               </Button>
-            </div>
+            </a>
           </div>
         </div>
       </DialogContent>

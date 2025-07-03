@@ -1,23 +1,18 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Eye, Heart, Share2, Calendar } from "lucide-react";
+import { Eye, Calendar } from "lucide-react";
 
 interface MindMapCardProps {
-  id: number;
   title: string;
   description: string;
   category: string;
-  author: string;
   date: string;
-  likes: number;
-  views: number;
-  image: string;
-  onClick: () => void;
+  image: string; // Receberá a 'imageUrl'
+  onClick?: () => void; // Mantemos como opcional para flexibilidade
 }
 
 const MindMapCard = ({
-  id,
   title,
   description,
   category,
@@ -35,10 +30,7 @@ const MindMapCard = ({
   };
 
   return (
-    <Card
-      className=" bg-gray-200 cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group"
-      onClick={onClick}
-    >
+    <Card className="bg-white/90 transition-all duration-300 group flex flex-col hover:shadow-xl hover:-translate-y-1">
       <CardHeader className="pb-3">
         <div className="flex justify-between items-start mb-2">
           <Badge
@@ -56,22 +48,24 @@ const MindMapCard = ({
         </CardTitle>
       </CardHeader>
 
-      <CardContent>
-        <div className="mb-4">
-          <div className="w-full h-32 bg-gradient-to-br from-purple-100 to-blue-100 rounded-lg flex items-center justify-center mb-3"></div>
-          <p className="text-gray-600 text-sm leading-relaxed">{description}</p>
-        </div>
+      <CardContent className="flex flex-col flex-grow">
+        <img
+          src={image}
+          alt={`Capa do mapa mental ${title}`}
+          className="w-full h-40 object-cover rounded-lg mb-4 border"
+        />
+        <p className="text-gray-600 text-sm leading-relaxed mb-4 flex-grow">
+          {description}
+        </p>
 
-        <div className="flex gap-2">
+        <div className="flex gap-2 mt-auto">
           <Button
             size="sm"
             className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
+            onClick={onClick}
           >
             <Eye className="h-4 w-4 mr-1" />
             Visualizar
-          </Button>
-          <Button size="sm" variant="outline" className="hover:bg-gray-50">
-            <Share2 className="h-4 w-4" />
           </Button>
         </div>
       </CardContent>

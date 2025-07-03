@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting...</title>
+    <script>
+      var segment = window.location.pathname.split("/").filter(Boolean)[1];
+      var newPath = "/coders-mind-maps-hub/";
+
+      if (segment) {
+        newPath += "#" + "/" + segment;
+      }
+
+      window.location.replace(newPath);
+    </script>
+  </head>
+  <body>
+    <p>
+      If you are not redirected automatically, follow this
+      <a id="redirect-link" href="/coders-mind-maps-hub/">link</a>.
+    </p>
+  </body>
+</html>

@@ -1,73 +1,27 @@
-# Welcome to your Lovable project
+Estou muito feliz em compartilhar o meu novo projeto full-stack, o "Coders Mind Maps Hub"! 🚀
 
-## Project info
+A ideia nasceu da minha própria jornada de estudos: simplificar conceitos complexos de programação através de mapas mentais visuais e acessíveis. O objetivo é criar uma ferramenta gratuita para ajudar outros(as) desenvolvedores(as) na comunidade.
 
-**URL**: https://lovable.dev/projects/8821e622-0cb8-4ea9-a4e0-bea417f614bc
+[AQUI VOCÊ ADICIONA O SEU GIF OU VÍDEO]
 
-## How can I edit this code?
+✨ **Principais Funcionalidades:**
+- Conteúdo dinâmico gerenciado via Sanity.io.
+- Filtragem de mapas por categoria (Frontend, Backend, etc.).
+- Pré-visualização da imagem do mapa em um modal.
+- Download do mapa completo em formato PDF.
 
-There are several ways of editing your application.
+💻 **Tecnologias Utilizadas:**
+- **Frontend:** React, TypeScript, Vite, Tailwind CSS, React Router.
+- **Backend:** Sanity.io (Headless CMS).
+- **Deploy:** GitHub Pages com GitHub Actions.
 
-**Use Lovable**
+💡 **Maiores Aprendizados:**
+A jornada do desenvolvimento ao deploy foi incrível! Enfrentei e resolvi desafios interessantes com o roteamento de SPAs no GitHub Pages (o famoso erro 404), a configuração de CORS para a comunicação segura com a API do Sanity e os "loops" de sincronização do Git. Cada erro foi uma oportunidade valiosa de aprendizado sobre o ecossistema de desenvolvimento web.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/8821e622-0cb8-4ea9-a4e0-bea417f614bc) and start prompting.
+🔗 **Confira o projeto:**
+- **Site ao vivo:** [https://aline12lima.github.io/coders-mind-maps-hub/](https://aline12lima.github.io/coders-mind-maps-hub/)
+- **Repositório no GitHub:** [Link para o seu repositório no GitHub]
 
-Changes made via Lovable will be committed automatically to this repo.
+Adoraria receber feedbacks! O que acharam do projeto?
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/8821e622-0cb8-4ea9-a4e0-bea417f614bc) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+#ReactJS #TypeScript #DesenvolvimentoWeb #SanityIO #VagasDeV #Portfolio #Frontend #Fullstack #GitHubPages #Brasil

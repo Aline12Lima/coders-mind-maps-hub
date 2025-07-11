@@ -1,11 +1,12 @@
 // src/pages/Index.tsx
 
 import { useState, useEffect } from "react";
-import Header from "@/components/Header";
+
 import HeroSection from "@/components/HeroSection";
 import FilterSection from "@/components/FilterSection";
 import MindMapCard from "@/components/MindMapCard";
 import MindMapModal from "@/components/MindMapModal";
+import Footer from "@/components/Footer";
 
 import { client } from "@/lib/sanityClient";
 import { Key } from "react";
@@ -64,7 +65,6 @@ const Index = () => {
       ? allMindMaps
       : allMindMaps.filter((map) => map.category === selectedCategory);
 
-  // Esta função está correta e agora será chamada
   const handleMindMapClick = (mindMap: SanityMindMap) => {
     setSelectedMindMap(mindMap);
     setIsModalOpen(true);
@@ -81,8 +81,7 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-200 via-blue-600 to-indigo-600">
-      <Header />
+    <div className="min-h-screen bg-gray-600 to-indigo-600">
       <HeroSection />
       <FilterSection
         categories={categories}
@@ -137,6 +136,7 @@ const Index = () => {
         onClose={() => setIsModalOpen(false)}
         mindMap={selectedMindMap}
       />
+      <Footer />
     </div>
   );
 };

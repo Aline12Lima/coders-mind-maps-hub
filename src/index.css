@@ -103,3 +103,9 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+.bg-img {
+  background-image: url("/imagens/background.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

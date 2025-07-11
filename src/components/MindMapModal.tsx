@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Download, Calendar } from "lucide-react";
 
-// Interface atualizada para os dados que vêm do Sanity
+
 interface MindMapModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -17,8 +17,8 @@ interface MindMapModalProps {
     description: string;
     category: string;
     date: string;
-    imageUrl: string; // <-- URL da imagem
-    pdfUrl: string; // <-- URL do PDF
+    imageUrl: string; 
+    pdfUrl: string; 
   } | null;
 }
 

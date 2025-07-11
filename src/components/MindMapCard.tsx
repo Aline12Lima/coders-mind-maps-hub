@@ -8,8 +8,8 @@ interface MindMapCardProps {
   description: string;
   category: string;
   date: string;
-  image: string; // Receberá a 'imageUrl'
-  onClick?: () => void; // Mantemos como opcional para flexibilidade
+  image: string; 
+  onClick?: () => void; 
 }
 
 const MindMapCard = ({
@@ -30,7 +30,10 @@ const MindMapCard = ({
   };
 
   return (
-    <Card className="bg-white/90 transition-all duration-300 group flex flex-col hover:shadow-xl hover:-translate-y-1">
+    <Card
+      id="mapas"
+      className="bg-white/90 transition-all duration-300 group flex flex-col hover:shadow-xl hover:-translate-y-1"
+    >
       <CardHeader className="pb-3">
         <div className="flex justify-between items-start mb-2">
           <Badge

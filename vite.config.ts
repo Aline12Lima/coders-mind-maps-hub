@@ -7,7 +7,7 @@ import { componentTagger } from "lovable-tagger";
 export default defineConfig(({ mode }) => ({
   base: "/coders-mind-maps-hub/",
   build: {
-    outDir: "docs",
+    outDir: "dist",
   },
   server: {
     host: "::",
